@@ -152,23 +152,7 @@ def update_graph(slct_city, slct_cusine):
 
 def display_click_data(clickData, slct_cusine):
     if clickData is None:
-        temp = 10119
-        df2 = df.query('postcode == @temp')
-        df2 = df2[df2[slct_cusine].any(1)]
-        fig2 = px.scatter(df2, x="rating", y="ratingtotal",
-                          hover_data=['name', "url"],
-                          height=300,
-                          labels={'rating': 'Average Rating', 'ratingtotal': 'Total Rating Count (log)'},
-                          log_y=True,
-                          template="simple_white",
-                          range_x=[0, 105])
-
-        fig2.update_layout(margin={"r": 50, "t": 50, "l": 100, "b": 0})
-        fig2.update(layout_coloraxis_showscale=False)
-        # fig2.update_xaxes(fixedrange=True)
-        # fig2.update_yaxes(fixedrange=True)
-
-        return fig2
+        return "nothing yet"
     else:
         temp = clickData["points"][0]["location"]
         df2 = df.query('postcode == @temp')
