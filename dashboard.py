@@ -41,14 +41,7 @@ app.layout = html.Div([
                             html.Span('spatial exploration', style={"text-transform": "uppercase", "font-size": 14}),
                             html.Br(),
                             html.Br(),
-                            html.Span("Here you can explore restaurants listed on ", style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span(html.A('Liferando.de ', href='https://www.lieferando.de/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span("by their area of delivery, cuisine and rating. ",style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span("The data used have been web-scrapped and visualised using ", style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span(html.A('Selenium ', href='https://selenium-python.readthedocs.io/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span("& ", style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span(html.A('Dash ', href='https://dash.plotly.com/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),
-                            html.Span("libraries by Tomas Kristof sometimes in October 2020.", style={"font-style": "italic", "font-size": 14, "color": "grey"}),
+                            html.Span("Here you can explore restaurants listed on ", style={"font-style": "italic", "font-size": 14, "color": "grey"}), html.Span(html.A('Liferando.de ', href='https://www.lieferando.de/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span("by their area of delivery, cuisine and rating. ",style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span("The data used have been web-scrapped and visualised using ", style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span(html.A('Selenium ', href='https://selenium-python.readthedocs.io/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span("& ", style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span(html.A('Dash ', href='https://dash.plotly.com/'), style={"font-style": "italic", "font-size": 14, "color": "grey"}),html.Span("libraries by Tomas Kristof sometimes in October 2020.", style={"font-style": "italic", "font-size": 14, "color": "grey"}),
                             html.Br(),
                             html.Br(),
                             html.Span(html.A('GitHub', href='https://github.com/kristoftomas/ExploreLieferandoBeta'), style={"font-size": 14, "color": "gray"}),
@@ -56,18 +49,13 @@ app.layout = html.Div([
                             html.Span(html.A(' LinkedIn', href='https://www.linkedin.com/in/kristoftomas/'), style={"font-size": 14, "color": "grey"}),
                             html.Br(),
                             html.Br(),
-                            html.Span("Select ", style={"text-transform": "uppercase", "font-weight": "bold", 'text-align': 'center'}),
-                            html.Span("city & cusine to filter the data "),
+                            html.Span("Select ", style={"text-transform": "uppercase", "font-weight": "bold", 'text-align': 'center'}),html.Span("city & cusine to filter the data "),
                             html.Br(),
-
-                            html.Span("Hover or Click ", style={"text-transform": "uppercase", "font-weight": "bold", 'text-align': 'center'}),
-                            html.Span("postcode to learn more"),
-                            html.Br(),
-
-                                ], xs=10, sm=8, md=6, lg=3, xl=3, style={"justify-content": "center","text-align": "center" }),
+                                ], xs=10, sm=8, md=6, lg=5, xl=4, style={"justify-content": "center","text-align": "center" }),
                     justify="center"),
                     html.Br(),
-                    dbc.Row([dbc.Col(dcc.Dropdown(id="slct_city", options=[
+                    dbc.Row([dbc.Col(
+                                dcc.Dropdown(id="slct_city", options=[
                                                         {'label': 'Berlin', 'value': 'berlin'},
                                                         {'label': 'Munich', 'value': 'munich'},
                                                         {'label': 'Hamburg', 'value': 'hamburg'},
@@ -76,8 +64,8 @@ app.layout = html.Div([
                                                           ],value="berlin",
                                                     placeholder="Select a city",
                                                 ),width=5, xs=10, sm=8, md=4, lg=2, xl=2),
-                             html.Br(),
-                             dbc.Col(dcc.Dropdown(id="slct_cusine",
+                                html.Br(),
+                                dbc.Col(dcc.Dropdown(id="slct_cusine",
                                                     options=[
                                                         {'label': 'All', 'value': 'all'},
                                                         {'label': 'Italian', 'value': 'italian'},
@@ -97,14 +85,28 @@ app.layout = html.Div([
                                                     multi=True,
                                                     style={'width': "100%"}), width=5, xs=10, sm=8, md=4, lg=2, xl=2)], justify="center"),
                     html.Br(),
+                    dbc.Row(
+                        dbc.Col([
+                            html.Span("Hover or Click ", style={"text-transform": "uppercase", "font-weight": "bold", 'text-align': 'center'}),html.Span("postcode to learn more"),
+                                ], xs=10, sm=8, md=6, lg=5, xl=4, style={"justify-content": "center","text-align": "center" }),
+                    justify="center"),
+
+
+                    # dbc.Row(dbc.Col([html.Span("Hover or Click ", style={"text-transform": "uppercase", "font-weight": "bold", 'text-align': 'center'}), html.Span("postcode to learn more")],xs=10, sm=8, md=6, lg=5, xl=4, style={"justify-content": "center","text-align": "center"}),),
+
+
 
                     html.Br(),
                     dbc.Row([dbc.Spinner(dbc.Col(dbc.Card(dcc.Graph(id='my_pizza_map'), color="light", outline=True), xs=10, sm=10, md=8, lg=8, xl=7)),], justify="center"),
                     html.Br(),
-                    dbc.Row([dbc.Spinner(dbc.Col(dbc.Card(dcc.Graph(id='my-output'), color="light", outline=True), xs=10, sm=10, md=10, lg=8,
-                                         xl=7))], justify="center")
-
-], style={"background-color": "#F9FAFB", "min-height": "100vh"})
+                    dbc.Row([dbc.Spinner(dbc.Col(dbc.Card(dcc.Graph(id='my-output'), color="light", outline=True), xs=10, sm=10, md=10, lg=8, xl=7))], justify="center"),
+                    html.Br(),
+                    html.Br(),
+                    html.Pre(id='web_link', children=[],
+                             style={'white-space': 'pre-wrap', 'word-break': 'break-all', 'text-align': 'center', 'color': 'Grey',
+                                    'margin-top': '5px'}),
+                    html.Br(),
+], style={"background-color": "#F9FAFB", "min-height": "120vh"})
 
 
 # ------------------------------------------------------------------------------
@@ -165,12 +167,32 @@ def display_click_data(clickData, slct_cusine):
                           template="simple_white",
                           range_x= [0, 105])
 
-        fig2.update_layout(margin={"r": 50, "t": 50, "l": 100, "b": 0})
+        fig2.update_layout(margin={"r": 50, "t": 50, "l": 100, "b": 25})
         fig2.update(layout_coloraxis_showscale=False)
         # fig2.update_xaxes(fixedrange=True)
         # fig2.update_yaxes(fixedrange=True)
 
         return fig2
+
+#---------------------------------------------------------------
+# callback for Web_link
+@app.callback(
+    Output('web_link', 'children'),
+    [Input('my-output', 'clickData')])
+
+def display_click_data(clickData):
+    if clickData is None:
+        return 'Click on any restaurant'
+    else:
+        # print (clickData)
+        the_link=clickData['points'][0]['customdata']
+        if the_link is None:
+            return 'No Restaurant Selected'
+        else:
+
+            return \
+                [html.A(the_link[0] + ": "),
+                html.A(the_link[1], href=the_link[1], target="_blank")]
 
 # ------------------------------------------------------------------------------
 if __name__ == "__main__":
